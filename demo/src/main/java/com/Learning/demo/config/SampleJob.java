@@ -37,11 +37,27 @@ public class SampleJob {
                 .build();
     }
 
+    private Tasklet secondTask() {
+        return new Tasklet() {
+            @Override
+            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+                System.out.println("This is second tasklet step");
+                return RepeatStatus.FINISHED;
+            }
+        };
+    }
+    private Step secondStep() {
+        return stepBuilderFactory.get("Second Step")
+                .tasklet(secondTask())
+                .build();
+    }
+
 
     @Bean
     public Job firstJob() {
         return jobBuilderFactory.get("First Job")
                 .start(firstStep())
+                .next(secondStep())
                 .build();
     }
 
