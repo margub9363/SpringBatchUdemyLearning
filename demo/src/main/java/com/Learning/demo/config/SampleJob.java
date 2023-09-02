@@ -84,9 +84,10 @@ public class SampleJob {
 
     private Step firstChunkStep() {
         return stepBuilderFactory.get("First Chunk Step")
-                .<Integer,Long>chunk(3)
+//                .<Integer,Long>chunk(3)
+                .<Integer,Integer>chunk(3)
                 .reader(firstItemReader)
-                .processor(firstItemProcessor)
+//                .processor(firstItemProcessor)
                 .writer(firstItemWriter)
                 .build();
     }
