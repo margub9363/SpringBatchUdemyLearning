@@ -13,11 +13,13 @@ public class FirstStepListener implements StepExecutionListener {
         System.out.println("Before Step "+ stepExecution.getStepName());
         System.out.println("Job Execution Context "+ stepExecution.getJobExecution().getExecutionContext());
         System.out.println("Step Execution Context "+ stepExecution.getExecutionContext());
+
+        stepExecution.getExecutionContext().put("Step Execution Context","Step Execution Context Value");
     }
 
     @Override
     public ExitStatus afterStep(StepExecution stepExecution) {
-        System.out.println("Before Step "+ stepExecution.getStepName());
+        System.out.println("After Step "+ stepExecution.getStepName());
         System.out.println("Job Execution Context "+ stepExecution.getJobExecution().getExecutionContext());
         System.out.println("Step Execution Context "+ stepExecution.getExecutionContext());
 
