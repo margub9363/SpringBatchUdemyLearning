@@ -1,5 +1,6 @@
 package com.Learning.demo.controller;
 
+import com.Learning.demo.service.JobService;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
@@ -21,27 +22,12 @@ import java.util.Map;
 @RequestMapping("/api/job")
 public class JobController {
 
-    @Autowired
-    private JobLauncher jobLauncher;
-
-    @Autowired
-    private Job firstJob;
-
-    @Autowired
-    private Job secondJob;
+@Autowired
+private JobService jobService;
 
     @GetMapping("/start/{jobName}")
     public String startJob(@PathVariable String jobName) throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
-        Map<String, JobParameter> params = new HashMap<>();
-        params.put("currentTime",new JobParameter(System.currentTimeMillis()));
-
-        JobParameters jobParameters = new JobParameters(params);
-        if(jobName.equals("First Job")){
-            jobLauncher.run(firstJob,jobParameters);
-        } else if (jobName.equals("Second Job")) {
-            jobLauncher.run(secondJob,jobParameters);
-        }
-
+        jobService.startJob(jobName);
         return "Job Started....";
     }
 }
