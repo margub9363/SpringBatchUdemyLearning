@@ -51,7 +51,7 @@ public class SampleJob {
     }
 
 
-    @Bean
+//    @Bean
     public Job firstJob() {
         return jobBuilderFactory.get("First Job")
                 .incrementer(new RunIdIncrementer())
