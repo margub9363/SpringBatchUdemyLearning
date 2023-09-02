@@ -1,5 +1,6 @@
 package com.Learning.demo.config;
 
+import com.Learning.demo.listener.FirstJobListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
@@ -28,6 +29,9 @@ public class SampleJob {
     @Autowired
     private Tasklet secondTask;
 
+    @Autowired
+    FirstJobListener firstJobListener;
+
 
     private Step firstStep() {
         return stepBuilderFactory.get("First Step")
@@ -48,6 +52,7 @@ public class SampleJob {
                 .incrementer(new RunIdIncrementer())
                 .start(firstStep())
                 .next(secondStep())
+                .listener(firstJobListener)
                 .build();
     }
 
