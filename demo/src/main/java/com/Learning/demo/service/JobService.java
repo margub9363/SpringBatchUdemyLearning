@@ -26,7 +26,7 @@ public class JobService {
     @Autowired
     private Job secondJob;
 
-    @Async
+//    @Async
     public void startJob(String jobName, List<JobParamsRequest> jobParamsRequestList) {
         Map<String, JobParameter> params = new HashMap<>();
         params.put("currentTime",new JobParameter(System.currentTimeMillis()));

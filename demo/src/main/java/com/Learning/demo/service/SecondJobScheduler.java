@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
+//@Service
 public class SecondJobScheduler {
 
     @Autowired
@@ -21,7 +21,7 @@ public class SecondJobScheduler {
     @Autowired
     private Job secondJob;
 
-    @Scheduled(cron = "0 0/1 * 1/1 * ?")
+//    @Scheduled(cron = "0 0/1 * 1/1 * ?")
     public void secondJobStarter() {
         Map<String, JobParameter> params = new HashMap<>();
         params.put("currentTime",new JobParameter(System.currentTimeMillis()));
